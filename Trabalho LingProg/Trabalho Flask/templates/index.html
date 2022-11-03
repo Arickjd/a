@@ -1,0 +1,38 @@
+{% extends "base.html" %}{% block title%}Home{% endblock %}
+    {% block content %}
+
+    <div><h2>Home Page</h1>
+
+    <br />
+    <h2> <p>Hello, {{ current_user.primeiro_nome }} </p> </h2>
+
+    <h3 align="center">Anotações</h3>
+    <ul class="list-group list-group-flush" id="notes">
+        {% for note in user.notes %}
+       <li class="list-group-tem">
+       
+       {{ note.data }}
+            <!-- deletar anotacao -->
+        <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+                <span aria-hidden="true">&times;</span>
+        </button>
+       </li>
+        {% endfor %}
+    </ul>
+    <form method="POST">
+    <textarea name = 'note' id = 'note' class = 'form-control'></textarea>
+    <br />
+    <div align = 'center'>
+        <button type = 'submit' class="btn btn-primary">Adicionar anotação
+        </button>
+    </div>
+    </form>
+
+    </div>
+
+    {% endblock %}
+    
+    <script> type="text/javascript" src="{{ url_for('static', filename='index.js') }}"
+    </script>
+
+</html>
